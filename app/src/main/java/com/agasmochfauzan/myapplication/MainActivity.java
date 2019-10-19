@@ -1,3 +1,10 @@
+//** HARAP INSTALL
+//Android Studio 3.4.2
+//        Build #AI-183.6156.11.34.5692245, built on June 27, 2019
+//        JRE: 1.8.0_152-release-1343-b01 amd64
+//        JVM: OpenJDK 64-Bit Server VM by JetBrains s.r.o
+//        Windows 10 10.0
+//Genymotion: 3.0.2
 package com.agasmochfauzan.myapplication;
 
 import android.app.Activity;
@@ -6,8 +13,10 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,10 +45,15 @@ public class MainActivity extends AppCompatActivity {
         gson = new Gson();
 
         amdilData();
-
+        // LinearLayout bisa setting horizontal atau vertical tinggal ganti "HORIZONTAL/VERTICAL"
+        // GridLayoutManager tampilan secara grid, bisa dipilih gridnya tinggal ganti "2" dengan yang diinginkan
+        // StaggeredGridLayoutManager tampilan bisa dibilang grid tapi tidak teratur
         LinearLayoutManager lm = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         DividerItemDecoration divider = new DividerItemDecoration(this,lm.getOrientation());
-        rvPlayer.setLayoutManager(lm);
+        GridLayoutManager gridLayoutManager= new GridLayoutManager(this,2);
+        StaggeredGridLayoutManager lm3 = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        rvPlayer.setLayoutManager(gridLayoutManager); // Buat nampilkan perintah grid tinggal ganti gridlayoutmanager
+        //dengan variabel (lm,lm3,gridLayoutManager)
         rvPlayer.setAdapter(adapter);
         rvPlayer.addItemDecoration(divider);
     }
