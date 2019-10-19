@@ -8,6 +8,7 @@
 package com.agasmochfauzan.myapplication;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
@@ -50,12 +51,24 @@ public class MainActivity extends AppCompatActivity {
         // StaggeredGridLayoutManager tampilan bisa dibilang grid tapi tidak teratur
         LinearLayoutManager lm = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         DividerItemDecoration divider = new DividerItemDecoration(this,lm.getOrientation());
-        GridLayoutManager gridLayoutManager= new GridLayoutManager(this,2);
+        GridLayoutManager gridLayoutManager= new GridLayoutManager(this,2,RecyclerView.VERTICAL,false);
         StaggeredGridLayoutManager lm3 = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         rvPlayer.setLayoutManager(gridLayoutManager); // Buat nampilkan perintah grid tinggal ganti gridlayoutmanager
         //dengan variabel (lm,lm3,gridLayoutManager)
         rvPlayer.setAdapter(adapter);
         rvPlayer.addItemDecoration(divider);
+
+        //Nembahkan Aksi onclick selagigus perpindahakan halaman
+        adapter.setListener(new OnClickListener() {
+            @Override
+            public void aksiKlik(int position) {
+                //cara berpindah activity/halaman
+                Intent intent=new Intent(MainActivity.this, DetailActivity.class);
+                //buat mengambil id player yang di klik
+                intent.putExtra("idPlayers", players.get(position).getIdPlayer());
+                startActivity(intent);
+            }
+        });
     }
 
     public void amdilData() {

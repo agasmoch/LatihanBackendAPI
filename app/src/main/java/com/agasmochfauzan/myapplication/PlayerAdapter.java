@@ -19,6 +19,11 @@ public class PlayerAdapter  extends RecyclerView.Adapter<PlayerAdapter.ViewHolde
 
     private Context mContext;
     private ArrayList<Player> players;
+    private  OnClickListener listener;//Langkah klik aplikasi intent
+
+    public void setListener(OnClickListener listener) {
+        this.listener = listener;
+    }
 
     public PlayerAdapter(Context mContext) {
         this.mContext = mContext;
@@ -61,6 +66,16 @@ public class PlayerAdapter  extends RecyclerView.Adapter<PlayerAdapter.ViewHolde
             super(itemView);
             imageView =  itemView.findViewById(R.id.imageView);
             tvName = itemView.findViewById(R.id.tv_name);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener !=null)//ngeset listener ngecek
+                    {
+                        listener.aksiKlik(getAdapterPosition());
+
+                    }
+                }
+            });
         }
 
     }
