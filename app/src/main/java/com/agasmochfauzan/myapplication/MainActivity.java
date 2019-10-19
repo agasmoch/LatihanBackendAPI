@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         amdilData();
 
-        LinearLayoutManager lm = new LinearLayoutManager(this);
+        LinearLayoutManager lm = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         DividerItemDecoration divider = new DividerItemDecoration(this,lm.getOrientation());
         rvPlayer.setLayoutManager(lm);
         rvPlayer.setAdapter(adapter);
